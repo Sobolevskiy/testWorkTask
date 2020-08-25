@@ -2,6 +2,6 @@ from modules.process_functions import json_to_html
 
 
 def test_html_string_creation():
-    data = [{"title": "testTitle", "body": "testBody"}]
+    data = [{"h3": "Title #1", "div": "Hello, World 1!"}]
     func = json_to_html(data)
-    assert func == '<h1>testTitle</h1><p>testBody</p>'
+    assert func == '<h3>Title #1</h3><div>Hello, World 1!</div>'
