@@ -7,11 +7,11 @@ def read_json(path_to_json='data/source.json'):
     return data
 
 
-def json_to_html(data):
+def json_to_html(datas):
     ans = ""
-    for i in data:
-        ans += "<h1>" + i["title"] + "</h1>"
-        ans += "<p>" + i["body"] + "</p>"
+    for data in datas:
+        for i in data:
+            ans += f'<{str(i)}>{data[i]}</{str(i)}>'
     return ans
 
 
