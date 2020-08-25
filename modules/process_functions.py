@@ -9,9 +9,14 @@ def read_json(path_to_json='data/source.json'):
 
 def json_to_html(datas):
     ans = ""
-    for data in datas:
-        for i in data:
-            ans += f'<{str(i)}>{data[i]}</{str(i)}>'
+    if isinstance(datas, list):
+        ans += "<ul>"
+        for i in datas:
+            ans += '<li>'+json_to_html(i)+'</li>'
+        ans += '</ul>'
+    else:
+        for key in datas:
+            ans += f'<{str(key)}>{datas[key]}</{str(key)}>'
     return ans
 
 
