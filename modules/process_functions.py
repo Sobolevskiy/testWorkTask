@@ -1,5 +1,7 @@
 import json
 from collections import Iterable
+from html import escape
+from modules.tag_creation import tag_creator
 
 
 def read_json(path_to_json='data/source.json'):
@@ -27,8 +29,9 @@ def write_html(html_str, path_to_html='data/index.html'):
 
 
 def add_tag(tag, data_in_tag):
+    tag_name, tag_params = tag_creator(tag)
     if isinstance(data_in_tag, Iterable) and not isinstance(data_in_tag, str):
         text = str(json_to_html(data_in_tag))
     else:
-        text = str(data_in_tag)
-    return f'<{str(tag)}>'+text+f'</{str(tag)}>'
+        text = escape(str(data_in_tag))
+    return f"<{str(tag_name)+str(tag_params)}>"+text+f"</{str(tag_name)}>"
